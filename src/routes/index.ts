@@ -3,6 +3,6 @@ import skillRoutes from "./skillRoutes"
 
 const router = Router()
 
-router.use("/skills", skillRoutes);
+router.use("/", skillRoutes);
 
 export default router
