@@ -1,7 +1,7 @@
 export enum SkillType {
-    Lang = "Language",
-    DesignTools = "DesignTool",
-    Framework = "Framework",
+  Lang = "Language",
+  DesignTools = "DesignTool",
+  Framework = "Framework",
 }
 
 export interface ISkill {
@@ -10,7 +10,7 @@ export interface ISkill {
   gradientColor: string[];
   gradientAngle: number;
   icon: string;
-  skill_type: SkillType;
+  skillType: SkillType;
 }
 
 export type CreateSkillDTO = Omit<ISkill, "id">;

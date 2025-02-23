@@ -1,33 +1,33 @@
-import { Skill } from "../models/skills";
+import { ISkillDocument, Skill, SkillModel } from "../models/skills";
 import { CreateSkillDTO } from "../types/skillsType";
 
 export class SkillService {
-  private skills: Map<string, Skill> = new Map();
-
-  async createSkill(skill: CreateSkillDTO): Promise<Skill> {
-    const skilldata = new Skill(skill);
-    this.skills.set(skilldata.id, skilldata);
-    return skilldata;
+  async createSkill(skill: CreateSkillDTO): Promise<ISkillDocument> {
+    const skilldata = new SkillModel(skill);
+    return await skilldata.save();
   }
 
-  async getById(id: string): Promise<Skill | null> {
-    return this.skills.get(id) || null;
+  async getById(id: string): Promise<ISkillDocument | null> {
+    return await SkillModel.findById(id);
   }
 
-  async getALl(): Promise<Skill[]> {
-    return Array.from(this.skills.values());
+  async getAll(): Promise<ISkillDocument[]> {
+    return await SkillModel.find();
   }
 
-  async updateSkill(id: string, data: CreateSkillDTO): Promise<Skill | null> {
-    const skill = this.skills.get(id);
-    if (!skill) {
-      return null;
-    }
-    Object.assign(skill, data);
-    return skill;
+  async updateSkill(
+    id: string,
+    data: CreateSkillDTO
+  ): Promise<ISkillDocument | null> {
+    return await SkillModel.findByIdAndUpdate(
+      id,
+      { $set: data },
+      { new: true }
+    );
   }
 
   async deleteSkill(id: string): Promise<boolean> {
-    return this.skills.delete(id);
+    const isOk = SkillModel.findByIdAndDelete(id);
+    return isOk !== null;
   }
 }

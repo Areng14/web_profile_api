@@ -12,7 +12,7 @@ app.use(express.json());
 
 mongoose
   .connect(`${process.env.MONGO_URL}`)
-  .then(() => console.log("Conntect to mongoDBB"))
+  .then(() => console.log("Connected to mongodb"))
   .catch((err) => console.error(`Mongo Connection error : ${err}`));
 
 app.get("/", (req: Request, res: Response) => {

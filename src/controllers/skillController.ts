@@ -20,7 +20,7 @@ export class SkillController {
 
   async getAll(req: Request, res: Response) {
     try {
-      const skills = await this.skillservice.getALl();
+      const skills = await this.skillservice.getAll();
 
       if (skills.length == 0) {
         return res.status(404).json({
@@ -58,25 +58,25 @@ export class SkillController {
 
   async updateById(req: Request, res: Response) {
     try {
-        const id = req.params.id;
-        const updateData: CreateSkillDTO = req.body;
+      const id = req.params.id;
+      const updateData: CreateSkillDTO = req.body;
 
-        if (Object.keys(updateData).length == 0) {
-            return res.status(400).json({
-                error: "Bad request",
-                message: "No data provided",
-            });
-        }
+      if (Object.keys(updateData).length == 0) {
+        return res.status(400).json({
+          error: "Bad request",
+          message: "No data provided",
+        });
+      }
 
-        const updateSkill = await this.skillservice.updateSkill(id, updateData);
-        if (!updateSkill) {
-            return res.status(404).json({
-                error: "Skill not found",
-                message: "No skill found with the given id",
-            });
-        }
+      const updateSkill = await this.skillservice.updateSkill(id, updateData);
+      if (!updateSkill) {
+        return res.status(404).json({
+          error: "Skill not found",
+          message: "No skill found with the given id",
+        });
+      }
 
-        return res.status(200).json(updateSkill);
+      return res.status(200).json(updateSkill);
     } catch (error) {
       return res.status(400).json({
         error: "Fail to update skill",

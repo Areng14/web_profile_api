@@ -19,7 +19,7 @@ router.get("/skills/:id", (req: Request, res: Response) => {
 });
 
 router.patch("/skills/:id", (req: Request, res: Response) => {
-    skillController.updateById(req, res);
+  skillController.updateById(req, res);
 });
 
 export default router;
