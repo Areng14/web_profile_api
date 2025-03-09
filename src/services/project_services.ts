@@ -2,8 +2,8 @@ import { IProjectDocument, ProjectModel } from "../models/project";
 import { CreateProjectDTO, UpdateProjectDTO } from "../types/projectType";
 
 export class ProjectService {
-  async createProject(skill: CreateProjectDTO): Promise<IProjectDocument> {
-    const projectdata = new ProjectModel(skill);
+  async createProject(project: CreateProjectDTO): Promise<IProjectDocument> {
+    const projectdata = new ProjectModel(project);
     return await projectdata.save();
   }
 

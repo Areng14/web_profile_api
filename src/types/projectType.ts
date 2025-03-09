@@ -1,5 +1,3 @@
-import { CreateSkillDTO } from "./skillsType";
-
 export interface IProject {
   id: string;
   name: string;
@@ -11,4 +9,4 @@ export interface IProject {
 }
 
 export type CreateProjectDTO = Omit<IProject, "id">;
-export type UpdateProjectDTO = Partial<CreateSkillDTO>;
+export type UpdateProjectDTO = Partial<CreateProjectDTO>;
