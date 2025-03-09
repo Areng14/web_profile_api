@@ -59,7 +59,7 @@ export class SkillController {
   async updateById(req: Request, res: Response) {
     try {
       const id = req.params.id;
-      const updateData: CreateSkillDTO = req.body;
+      const updateData: UpdateSkillDTO = req.body;
 
       if (Object.keys(updateData).length == 0) {
         return res.status(400).json({

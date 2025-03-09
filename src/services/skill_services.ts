@@ -1,5 +1,5 @@
-import { ISkillDocument, Skill, SkillModel } from "../models/skills";
-import { CreateSkillDTO } from "../types/skillsType";
+import { ISkillDocument, SkillModel } from "../models/skills";
+import { CreateSkillDTO, UpdateSkillDTO } from "../types/skillsType";
 
 export class SkillService {
   async createSkill(skill: CreateSkillDTO): Promise<ISkillDocument> {
@@ -17,7 +17,7 @@ export class SkillService {
 
   async updateSkill(
     id: string,
-    data: CreateSkillDTO
+    data: UpdateSkillDTO
   ): Promise<ISkillDocument | null> {
     return await SkillModel.findByIdAndUpdate(
       id,
