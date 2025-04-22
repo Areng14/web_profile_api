@@ -16,4 +16,7 @@ const ProjectSchema = new Schema(
   }
 );
 
-export const ProjectModel = mongoose.model<IProjectDocument>("Project", ProjectSchema);
+export const ProjectModel = mongoose.model<IProjectDocument>(
+  "Project",
+  ProjectSchema
+);

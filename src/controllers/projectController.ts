@@ -11,7 +11,12 @@ export class ProjectController {
       const project = await this.projectService.createProject(projectData);
       return res.status(201).json(project);
     } catch (error) {
-      return res.status(500).json({ error: "Internal Server Error", message: "Something went wrong" });
+      return res
+        .status(500)
+        .json({
+          error: "Internal Server Error",
+          message: "Something went wrong",
+        });
     }
   }
 
@@ -20,7 +25,12 @@ export class ProjectController {
       const projects = await this.projectService.getAll();
       res.json(projects);
     } catch (error) {
-      return res.status(500).json({ error: "Internal Server Error", message: "Something went wrong" });
+      return res
+        .status(500)
+        .json({
+          error: "Internal Server Error",
+          message: "Something went wrong",
+        });
     }
   }
 
@@ -36,7 +46,12 @@ export class ProjectController {
       }
       res.json(project);
     } catch (error) {
-      return res.status(500).json({ error: "Internal Server Error", message: "Something went wrong" });
+      return res
+        .status(500)
+        .json({
+          error: "Internal Server Error",
+          message: "Something went wrong",
+        });
     }
   }
 
@@ -52,7 +67,10 @@ export class ProjectController {
         });
       }
 
-      const updateProject = await this.projectService.updateProject(id, updateData);
+      const updateProject = await this.projectService.updateProject(
+        id,
+        updateData
+      );
       if (!updateProject) {
         return res.status(404).json({
           error: "Project not found",
@@ -62,7 +80,12 @@ export class ProjectController {
 
       return res.status(200).json(updateProject);
     } catch (error) {
-      return res.status(500).json({ error: "Internal Server Error", message: "Something went wrong" });
+      return res
+        .status(500)
+        .json({
+          error: "Internal Server Error",
+          message: "Something went wrong",
+        });
     }
   }
 }
