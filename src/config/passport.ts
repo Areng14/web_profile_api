@@ -9,11 +9,10 @@ import bcrypt from "bcrypt";
 import User from "../models/user";
 
 interface jwtPayload {
-    id: string,
-    email: string,
-    iat?: number,
-    exp?: number,
-
+  id: string;
+  email: string;
+  iat?: number;
+  exp?: number;
 }
 
 const configurePassport = () => {
@@ -70,14 +69,16 @@ const configurePassport = () => {
 
   passport.serializeUser((user: any, done) => {
     done(null, user.id);
-  })
+  });
 
-  passport.deserializeUser(async(id: string, done) => {
+  passport.deserializeUser(async (id: string, done) => {
     try {
-        const user = await User.findById(id);
-        done(null, user)
-    } catch(error) {
-        done(error, null)
+      const user = await User.findById(id);
+      done(null, user);
+    } catch (error) {
+      done(error, null);
     }
-  })
+  });
 };
+
+export default configurePassport;

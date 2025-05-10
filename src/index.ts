@@ -2,8 +2,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import routes from "./routes";
 import mongoose from "mongoose";
-import passport from "passport"
-import session from 'express-session'
+import session from "express-session";
+import configurePassport from "./config/passport";
+import passport from "passport";
 
 require("dotenv").config();
 const app = express();
@@ -17,12 +18,18 @@ mongoose
   .then(() => console.log("Connected to mongodb"))
   .catch((err) => console.error(`Mongo Connection error : ${err}`));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET || "",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {secure: process.env.NODE_ENV === "production"}
-}))
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: process.env.NODE_ENV === "production" },
+  })
+);
+
+configurePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Hello World!" });
