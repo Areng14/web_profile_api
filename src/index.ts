@@ -15,7 +15,11 @@ app.use(express.json());
 
 mongoose
   .connect(`${process.env.MONGO_URL}`)
-  .then(() => console.log("Connected to mongodb"))
+  .then(async () => {
+    console.log("Connected to mongodb");
+    const { ensureOwnerUser } = await import("./scripts/ensureOwner");
+    await ensureOwnerUser();
+  })
   .catch((err) => console.error(`Mongo Connection error : ${err}`));
 
 app.use(
